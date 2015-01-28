@@ -7,12 +7,12 @@ else
     echo "Load file link alreay exists"
 end
 
-if [ ! -L ~/.oh-my-fish/custom/plugins/zenc-aliases ]
-    ln -s $PWD/plugins/zenc-aliases ~/.oh-my-fish/custom/plugins/zenc-aliases
-    echo "Directory link created"
-else
-    echo "Directory already linked"
-end
+# if [ ! -L ~/.oh-my-fish/custom/plugins/zenc-aliases ]
+#     ln -s $PWD/plugins/zenc-aliases ~/.oh-my-fish/custom/plugins/zenc-aliases
+#     echo "Directory link created"
+# else
+#     echo "Directory already linked"
+# end
 
 if [ -L ~/.oh-my-fish/custom/zenc-aliases.load ]
     source ~/.oh-my-fish/custom/zenc-aliases.load

@@ -3,4 +3,11 @@
 #
 # set oh-my-fish /Users/bpinto/.oh-my-fish
 #
-. ~/.oh-my-fish/custom/plugins/zenc-aliases/zenc-aliases.fish
+
+echo "Loading zenc's oh-my-fish-aliases <https://github.com/technodelight/oh-my-fish-aliases>"
+set project_dir (pwd readlink $PWD)
+for plugin in $project_dir/plugins-enabled/*.fish
+    set plugin_name (basename $plugin | sed 's/\.fish//')
+    echo "Enable plugin $plugin_name"
+    source $plugin
+end
