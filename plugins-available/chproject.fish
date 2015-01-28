@@ -1,6 +1,6 @@
 # change to a project directory w/ autocomplete
 function project --description 'Change to project directory'
-        set tmp_dir = `ls -1 ~/Sites/ | grep $argv`
+        set tmp_dir (ls -1 ~/Sites/ | grep $argv)
         if test -d ~/Sites/$tmp_dir
                 cd ~/Sites/$tmp_dir
         else
