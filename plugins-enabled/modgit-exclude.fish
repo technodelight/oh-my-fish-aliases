@@ -1,0 +1,1 @@
+../plugins-available/modgit-exclude.fish
