@@ -1,12 +1,12 @@
 # Modgit exclude plugin
 function modgit-exclude --description 'Exclude installed modgit module files from git'
 	if test -d ../.git
-		set __gitexcludefile ../.git/info/exclude
+		set --unexport --local __gitexcludefile ../.git/info/exclude
 	else
 		echo ".git directory not found - could not exclude files"
 		return 1
 	end
-	set __test_modgit_available (modgit list | grep "ERROR:")
+	set --unexport --local  __test_modgit_available (modgit list | grep "ERROR:")
 	if test $__test_modgit_available
 		echo "Modgit is not avilable in the current directory"
 		return 4;
