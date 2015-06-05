@@ -5,14 +5,22 @@ alias pull="git pull"
 alias push="git push origin head"
 alias merge="git merge"
 alias got="git"
+alias what-to-release="git log master..develop --merges --oneline"
 
 # go (to feature branch)
 alias go="git checkout"
 
 function what-did-i-work-on-recently --description "List branches you were working on recently"
-  set --local --unexport __git_email (git config --get-all user.email | tail -1)
-  echo $__git_email worklog:
-  git log --format="%ae %ad %s" --date=short -100 | grep $__git_email | grep -oE "[0-9\-]+ [A-Z]+-[0-9]+.*"
+    set --local --unexport __git_email (git config --get-all user.email | tail -1)
+    echo $__git_email worklog:
+    git log --format="%ae %ad %s" --date=short -100 | grep $__git_email | grep -oE "[0-9\-]+ [A-Z]+-[0-9]+.*"
+end
+
+function what-i-stashed --description "Show a diff on first stash object"
+    set --local --unexport __first_stash (git stash list | cut -d ":" -f1 | head -1)
+    if [ "$__first_stash" != "" ]
+        git stash show -p $__first_stash
+    end
 end
 
 # Change to a Branch

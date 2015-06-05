@@ -13,6 +13,7 @@ function project --description 'Change to project directory'
     end
 end
 
+#TODO: /bin/sh -c "ls -1 ~/Sites ~/MySites/ | grep -v '/Users/' | sort | tail -n+2" 2=> count of project dirs array ~/*: project dirs
 complete -f -c project -e
 for projectname in (ls -1 $__projectname_basedir | sed $__projectname_sed_regex)
     complete -f -c project -A -a $projectname -d 'Change to project directory'
