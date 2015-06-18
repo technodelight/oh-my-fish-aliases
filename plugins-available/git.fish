@@ -6,6 +6,7 @@ alias push="git push origin head"
 alias merge="git merge"
 alias got="git"
 alias what-to-release="git log master..develop --merges --oneline"
+alias gitsearch="git br | grep"
 
 # go (to feature branch)
 alias go="git checkout"

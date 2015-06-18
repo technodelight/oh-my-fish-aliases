@@ -6,6 +6,7 @@ alias findphp="find . -type f -name \"*.php\" | sed 's/^\.\///g;s/: / :/g' | xar
 alias findinphp="find . -type f -name \"*.php\" | sed 's/^\.\///g;s/: / :/g' | xargs grep --color=auto -n"
 alias findphtml="find . -type f -name \"*.phtml\" | sed 's/^\.\///g;s/: / :/g' | xargs grep --color=auto -n"
 alias findxml="find . -type f -name \"*.xml\" | xargs grep --color=auto -n"
-# alias what-did-i-work-on-recently='git log --format="%ae %ad %s" --date=short -100 | grep "$__git_email" | grep -oE "[0-9\-]+ [A-Z]+-[0-9]+.*"'
 alias runningvms='VBoxManage list runningvms | cut -d " " -f 1'
 alias stopallvms='VBoxManage list runningvms | cut -d " " -f 1 | xargs -J % VBoxManage controlvm % savestate'
+alias behat-debug-screens="ls -1 failure_*.png | xargs open"
+alias behat-debug-reset="ls -1 failure_*.png debug_times-*.csv | xargs rm"
