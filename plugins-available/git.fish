@@ -7,6 +7,7 @@ alias merge="git merge"
 alias got="git"
 alias what-to-release="git log master..develop --merges --oneline"
 alias gitsearch="git br | grep"
+alias git-cleanup="git branch --merged | grep -v "\*" | grep -v master | grep -v dev | xargs -n 1 git branch -d"
 
 # go (to feature branch)
 alias go="git checkout"

@@ -10,3 +10,4 @@ alias runningvms='VBoxManage list runningvms | cut -d " " -f 1'
 alias stopallvms='VBoxManage list runningvms | cut -d " " -f 1 | xargs -J % VBoxManage controlvm % savestate'
 alias behat-debug-screens="ls -1 failure_*.png | xargs open"
 alias behat-debug-reset="ls -1 failure_*.png debug_times-*.csv | xargs rm"
+alias what-is-my-ip="curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*\$//'"
