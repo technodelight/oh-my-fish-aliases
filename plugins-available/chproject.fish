@@ -1,11 +1,11 @@
-set __projectname_basedir ~/Sites/
+set __projectname_basedir /Users/galzsolt/Sites /Users/galzsolt/MySites
 set __projectname_sed_regex 's/\.development\.local//;s/dev\.//;s/\.com//'
 
 # change to a project directory w/ autocomplete
 function project --description 'Change to project directory'
-    set --unexport --local tmp_dir (ls -1 $__projectname_basedir | grep $argv)
-    if test -d ~/Sites/$tmp_dir
-        cd ~/Sites/$tmp_dir
+    set --unexport --local tmp_dir (find $__projectname_basedir -type d -maxdepth 1 -mindepth 1 | grep $argv)
+    if test -d "$tmp_dir"
+        cd "$tmp_dir"
     else
         echo -n 'No such project ('
         echo -n $argv
@@ -13,8 +13,7 @@ function project --description 'Change to project directory'
     end
 end
 
-#TODO: /bin/sh -c "ls -1 ~/Sites ~/MySites/ | grep -v '/Users/' | sort | tail -n+2" 2=> count of project dirs array ~/*: project dirs
 complete -f -c project -e
-for projectname in (ls -1 $__projectname_basedir | sed $__projectname_sed_regex)
+for projectname in (find $__projectname_basedir -type d -maxdepth 1 -mindepth 1 | sed $__projectname_sed_regex | xargs basename)
     complete -f -c project -A -a $projectname -d 'Change to project directory'
 end

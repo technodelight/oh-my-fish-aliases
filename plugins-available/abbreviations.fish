@@ -11,3 +11,4 @@ alias stopallvms='VBoxManage list runningvms | cut -d " " -f 1 | xargs -J % VBox
 alias behat-debug-screens="ls -1 failure_*.png | xargs open"
 alias behat-debug-reset="ls -1 failure_*.png debug_times-*.csv | xargs rm"
 alias what-is-my-ip="curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*\$//'"
+alias subdirs-disk-space="du -h . | grep '\./[a-z.-]*\$'"
