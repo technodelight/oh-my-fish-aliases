@@ -25,6 +25,35 @@ function what-i-stashed --description "Show a diff on first stash object"
     end
 end
 
+function git-short-history --description "Show a short history of what you've been doing on a branch" -a tick
+    set --local --unexport __branch_request $argv[1]
+    set --local --unexport __branch_default 'head'
+    set --local --unexport __tick ""
+
+    if [ "$tick" = "--tick" ]
+        set __tick " [x]"
+        set __branch_request $__branch_default
+    end
+
+    if [ "$__branch_request" = "" ]
+        set --local --unexport __branch_check (git rev-parse "$__branch_default")
+    else
+        set --local --unexport __branch_check (git rev-parse "$__branch_request")
+    end
+
+    set --local --unexport __branch_parent (git show-branch -a $__branch_check 2> /dev/null | sed 's/^ *//g' | grep -v "^\*" | head -1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//')
+    set --local --unexport __ticket_id_if (git log $__branch_check --format="%B" | grep -o -E "^[A-Z]+[- ][0-9]+" | head -1 | sed 's/^[ ]+//g;s/[ ]+$//g;')
+
+    if [ "$__ticket_id_if" != "" ]
+        set --local --unexport __branch_name_human (git branch --contains $__branch_check | sed "s/* //;s/feature\///;s/^\($__ticket_id_if\)-//;s/-/ /g")
+
+        echo "$__ticket_id_if: $__branch_name_human"
+        git log --format="%B" --no-merges $__branch_parent..$__branch_check --reverse | grep -E "^$__ticket_id_if" | sed -E "s/^$__ticket_id_if:* (.*)/-$__tick \u\1/"
+    else
+        git log --format="%B" --no-merges $__branch_parent..$__branch_check --reverse | grep -E -v '^[[:space:]]*$'
+    end
+end
+
 # Change to a Branch
 function gitgo --description 'Change to a feature branch'
 	set --unexport --local __local_branch (git branch | grep $argv | head -1 | cut -c3-)
