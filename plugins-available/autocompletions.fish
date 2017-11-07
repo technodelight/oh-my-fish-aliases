@@ -1,0 +1,1 @@
+complete -x -c jira -a '(jira shell --auto)'

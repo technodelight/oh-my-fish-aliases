@@ -15,5 +15,5 @@ end
 
 complete -f -c project -e
 for projectname in (find $__projectname_basedir -type d -maxdepth 1 -mindepth 1 | sed $__projectname_sed_regex | xargs basename)
-    complete -f -c project -A -a $projectname -d 'Change to project directory'
+    complete -f -c project -A -a $projectname -d "Change to $projectname directory"
 end
