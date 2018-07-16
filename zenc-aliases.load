@@ -5,7 +5,10 @@
 #
 
 echo "Loading zenc's oh-my-fish-aliases <https://github.com/technodelight/oh-my-fish-aliases>"
-set project_dir (dirname (status --current-filename))
+set project_dir (dirname (readlink (status --current-filename)) 2> /dev/null)
+if [ "$project_dir" = "" ]
+    set project_dir (dirname (status --current-filename) 2> /dev/null)
+end
 
 for plugin in $project_dir/plugins-enabled/*.fish
     set plugin_name (basename $plugin | sed 's/\.fish//')

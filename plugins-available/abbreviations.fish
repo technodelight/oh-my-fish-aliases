@@ -14,4 +14,5 @@ alias what-is-my-ip="curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address
 alias subdirs-disk-space="du -h . | grep '\./[a-z.-]*\$'"
 alias hobo="hem"
 alias mem-per-process="ps -eo size,pid,user,command --sort -size | awk '{ hr=$1/1024 ; printf(\"%13.2f Mb \",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf(\"%s \",$x) } print \"\" }'"
-alias reload-bluetooth="sudo kextunload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport AND sudo kextload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport"
+alias stop-bluetooth='sudo kextunload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport'
+alias start-bluetooth='sudo kextload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport'
