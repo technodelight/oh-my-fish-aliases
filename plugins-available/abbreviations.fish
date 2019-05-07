@@ -17,3 +17,13 @@ alias mem-per-process="ps -eo size,pid,user,command --sort -size | awk '{ hr=$1/
 alias stop-bluetooth='sudo kextunload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport'
 alias start-bluetooth='sudo kextload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport'
 alias cat="bat"
+
+function release-complexity --description 'show release complexity based on story points from jira'
+	set --unexport --local releaseVersion $argv
+	jira search "labels in ('$releaseVersion')" --points | grep story | cut -d: -f2 | awk '{n += $1}; END{print n}'
+end
+
+function release-estimates --description 'show total estimates in hours for a release from jira'
+	set --unexport --local releaseVersion $argv
+	jira search "labels in ('$releaseVersion')" --estimates | grep estimate | cut -d: -f2- | awk '{n += $1}; END{print n}' | awk 'END{print $1/60/60 " hours"}'
+end
