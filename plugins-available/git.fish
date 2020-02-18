@@ -11,7 +11,7 @@ alias git-cleanup="git branch --merged | grep -v \"\*\" | grep -v master | grep 
 alias git-rank="git shortlog -sn --no-merges"
 
 # go (to feature branch)
-alias go="git checkout"
+alias gco="git checkout"
 
 function what-did-i-work-on-recently --description "List branches you were working on recently"
     set --local --unexport __git_email (git config --get-all user.email | tail -1)
