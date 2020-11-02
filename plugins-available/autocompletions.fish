@@ -20,3 +20,7 @@ complete -xc ezra -a list-favs -d "ezra: list all favourites"
 complete -xc ezra -a fav -d "ezra: add to favourite"
 complete -xc ezra -a sync -d "ezra: sync to archive"
 complete -xc ezra -a sync -n "__fish_seen_subcommand_from sync" -l no-limit -d "ezra: sync bandwith limit off"
+
+complete -xc last-deploy -a "(cat ~/.ssh/config | grep '^Host' | cut -d' ' -f2- | tr \" \" \"\n\")"
+
+complete -xc ws -a "(ws | grep '^  ' | perl -pe 's/\e\[[0-9;]*m(?:\e\[K)?//g' | trim)"

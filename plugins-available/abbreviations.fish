@@ -10,7 +10,7 @@ alias runningvms='VBoxManage list runningvms | cut -d " " -f 1'
 alias stopallvms='VBoxManage list runningvms | cut -d " " -f 1 | xargs -J % VBoxManage controlvm % savestate'
 alias behat-debug-screens="ls -1 failure_*.png | xargs open"
 alias behat-debug-reset="ls -1 failure_*.png debug_times-*.csv | xargs rm"
-alias what-is-my-ip="curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*\$//'"
+alias what-is-my-ip="dig -4 @ns1.google.com TXT o-o.myaddr.l.google.com +short | sed 's/\"//g'"
 alias subdirs-disk-space="du -h . | grep '\./[a-z.-]*\$'"
 alias hobo="hem"
 alias mem-per-process="echo -e \"%mem\tpid\tuser\tcommand\"; and ps -eo \%mem,pid,user,command -m | sort -nk1 | tail -10r"
@@ -18,7 +18,7 @@ alias cpu-per-process="echo -e \"%cpu\tpid\tuser\tcommand\"; and ps -eo \%cpu,pi
 alias stop-bluetooth='sudo kextunload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport'
 alias start-bluetooth='sudo kextload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport'
 alias cat="bat"
-alias which-docker="docker ps | egrep -o '(heidelberg|vaa|nutri)' | uniq"
+alias which-docker="docker ps | egrep -o '(heidelberg|vaa|nutri|talkmobile)' | uniq"
 
 function jira-release-complexity --description 'show release complexity based on story points from jira'
     set --unexport --local releaseVersion $argv
@@ -61,6 +61,15 @@ function trim --description 'trim leading/trailing spaces'
     sed -E 's~^ +~~g;s~ +$~~g'
 end
 
-function whitespace --description 'remove unnecessary whitespaces'
+function strip-whitespace --description 'remove unnecessary whitespaces'
     sed -E 's~[ ]{1,}~ ~g'
+end
+
+function ssl-cert-debug --description 'show details on SSL certs'
+    set --unexport --local domain $argv[1]
+    set --unexport --local sni $argv[2]
+    if test "$sni" = ""
+        set sni "$domain"
+    end
+    echo | openssl s_client -showcerts -servername "$sni" -connect "$domain:443" 2>/dev/null | openssl x509 -inform pem -noout -text
 end

@@ -18,7 +18,7 @@ function merge-down --description "merge every release branch down from the firs
         git merge $PREV_BRANCH --no-edit
         git push origin head
     end
-    if test "$CURRENT_BRANCH" -neq develop
+    if [ "$CURRENT_BRANCH" != "develop" ]
         git checkout $CURRENT_BRANCH
     end
 end

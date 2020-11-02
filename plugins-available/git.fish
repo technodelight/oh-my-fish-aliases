@@ -55,55 +55,10 @@ function git-short-history --description "Show a short history of what you've be
     end
 end
 
-# Change to a Branch
-function gitgo --description 'Change to a feature branch'
-	set --unexport --local __local_branch (git branch | grep $argv | head -1 | cut -c3-)
-	set --unexport --local __remote_branch (git branch -r | grep $argv | head -1 | cut -c3-)
-    set --unexport --local __is_active (git branch | grep $argv | head -1 | cut -c1)
-    if [ "$__is_active" = "*" ]
-        echo "Going to branch... Wait, you are already here ;)"
-	else if [ "$__local_branch" != "" ]
-        __gitgo_pull_or_checkout $__local_branch
-    else if [ "$__remote_branch" != "" ]
-        __gitgo_pull_or_checkout $__remote_branch
-	end
+function fixup --description "fixup commit"
+    git add . && git ci -m "fixup"
 end
 
-function __gitgo_pull_or_checkout
-    set --unexport --local __remote_branch (git branch -r | cut -c3- | grep $argv[1] | head -1)
-    set --unexport --local __local_branch (echo $__remote_branch | cut -d "/" -f2-)
-    set --unexport --local __branch $argv[1]
-
-    # check if branch exists locally, if not, create
-    if [ "$__remote_branch" != "" ]
-        set __branch $__local_branch
-        set --unexport --local __is_exists (git show-ref refs/heads/$__branch)
-        if [ "$__is_exists" = "" ]
-            echo "creating new branch $__local_branch with remote set to $__remote_branch"
-            git checkout -b $__local_branch $__remote_branch
-            return 0;
-        end
-    end
-
-    git checkout $__branch
-    if [ "$__remote_branch" != "" ]
-        set --unexport --local __remote_name (echo $__remote_branch | cut -d "/" -f1)
-        git pull $__remote_name $__local_branch
-    end
-
-    return 0;
+function amend --description "amend last commit without edit"
+    git add . && git ci --amend --no-edit
 end
-
-function __gitgo_needs_feature
-    for __branchname in (git branch | grep feature | sed 's/.*feature\///g')
-    	set --unexport --local __has_issue_number (echo "$__branchname" | grep -E "^[A-Z]+[- ][0-9]+" -o)
-    	if [ "$__has_issue_number" != "" ]
-    		set --unexport --local __ticketid (echo $__has_issue_number | sed 'y/ /-/')
-    		set --unexport --local __description (echo "$__branchname" | sed 's/$__ticketid//g;s/^[ ]+//g;s/[ ]+$//g;y/-/ /')
-        	echo "$__ticketid $__description"
-        end
-    end
-    return 0;
-end
-
-complete -c gitgo -x -a '(__gitgo_needs_feature)' -d 'feature'
