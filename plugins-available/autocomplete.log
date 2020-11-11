@@ -173,3 +173,31 @@
   0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
   1 => 'ren',
 )
+2020-11-11 09:14:15 array (
+  0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
+  1 => 'dele',
+)
+2020-11-11 09:14:17 array (
+  0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
+  1 => 'release',
+)
+2020-11-11 09:14:50 array (
+  0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
+  1 => 'feature/TAL002-1162',
+)
+2020-11-11 11:18:03 array (
+  0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
+  1 => 'ren',
+)
+2020-11-11 11:42:56 array (
+  0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
+  1 => 'epic/port',
+)
+2020-11-11 15:51:21 array (
+  0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
+  1 => 'epic/pi',
+)
+2020-11-11 16:15:42 array (
+  0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
+  1 => 'epic/portin',
+)
