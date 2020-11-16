@@ -253,3 +253,15 @@
   0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
   1 => 'delete',
 )
+2020-11-16 09:40:12 array (
+  0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
+  1 => 'local-',
+)
+2020-11-16 09:40:26 array (
+  0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
+  1 => 'loc',
+)
+2020-11-16 09:40:36 array (
+  0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
+  1 => 'dele',
+)
