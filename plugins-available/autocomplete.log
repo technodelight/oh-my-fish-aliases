@@ -301,3 +301,19 @@
   0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
   1 => '--',
 )
+2020-11-20 12:46:22 array (
+  0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
+  1 => 'epic/port',
+)
+2020-11-20 12:46:47 array (
+  0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
+  1 => 'epic/port-',
+)
+2020-11-20 12:49:09 array (
+  0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
+  1 => 'epic/port',
+)
+2020-11-20 12:51:27 array (
+  0 => '/Users/galzsolt/MySites/oh-my-fish-aliases/plugins-available/autocomplete.php',
+  1 => 'epic/port',
+)
