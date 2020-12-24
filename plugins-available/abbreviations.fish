@@ -17,7 +17,11 @@ alias mem-per-process="echo -e \"%mem\tpid\tuser\tcommand\"; and ps -eo \%mem,pi
 alias cpu-per-process="echo -e \"%cpu\tpid\tuser\tcommand\"; and ps -eo \%cpu,pid,user,command -m | sort -nk1 | tail -10r"
 alias stop-bluetooth='sudo kextunload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport'
 alias start-bluetooth='sudo kextload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport'
-alias cat="bat"
+if test (uname) = "Linux"
+    alias cat="batcat"
+else
+    alias cat="bat"
+end
 alias which-docker="docker ps | egrep -o '(heidelberg|vaa|nutri|talkmobile)' | uniq"
 
 function jira-release-complexity --description 'show release complexity based on story points from jira'

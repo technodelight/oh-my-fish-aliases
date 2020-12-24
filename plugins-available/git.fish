@@ -2,7 +2,7 @@
 
 # aliases
 alias pull="git pull"
-alias push="git push -u origin head"
+alias push="git push -u origin HEAD"
 alias merge="git merge"
 alias got="git"
 alias what-to-release="git log master..develop --merges --oneline"
